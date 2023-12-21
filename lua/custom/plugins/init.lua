@@ -67,4 +67,11 @@ return {
       require('dap-python').setup('~/.virtualenv/debugpy/bin/python')
     end
   },
+  {
+    'catppuccin/nvim',
+    as = 'catppuccin',
+    config = function()
+      vim.cmd.colorscheme('catppuccin-frappe')
+    end
+  },
 }
