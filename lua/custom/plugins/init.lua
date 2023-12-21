@@ -44,15 +44,15 @@ return {
           {
             icons =
             {
-              disconnect = '',
+              disconnect = '',
               pause = '',
               play = '',
-              run_last = '菱',
+              run_last = '',
               terminate = '',
-              step_over = '',
-              step_into = '',
-              step_out = '',
-              step_back = '倫',
+              step_over = '',
+              step_into = '',
+              step_out = '',
+              step_back = '',
             },
           },
         }
