@@ -11,18 +11,6 @@ return {
       require('harpoon').setup()
     end
   },
-  --[[ {
-    'zbirenbaum/copilot.lua',
-    config = function()
-      require('copilot').setup({})
-    end
-  },
-  {
-    'zbirenbaum/copilot-cmp',
-    config = function()
-      require('copilot_cmp').setup()
-    end
-  }, ]]
   {
     'github/copilot.vim',
   },
