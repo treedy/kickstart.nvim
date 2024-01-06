@@ -39,6 +39,8 @@ vim.keymap.set('n', '<leader>bt', dapui.toggle, { desc = 'de[b]ug [t]oggle' })
 
 -- Copilot mappings
 vim.keymap.set('i', '<C-Space>', '<Plug>(copilot-suggest)')
+vim.keymap.set('i', '<C-L>', '<Plug>(copilot-accept-word)')
+vim.keymap.set('i', '<C-M-L>', '<Plug>(copilot-accept-line)')
 
 -- document any custom mappings and or mapping prefixes
 require('which-key').register {
