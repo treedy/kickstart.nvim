@@ -616,7 +616,7 @@ cmp.setup {
     ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-p>'] = cmp.mapping.select_prev_item(),
     ['<C-[>'] = cmp.mapping.abort(),
-    ['<C-Space>'] = cmp.mapping.complete(),
+    -- <C-Space> is mapped to <Plug>(copilot-suggest)
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
