@@ -1,3 +1,4 @@
+---@diagnostic disable: missing-fields
 -- You can add your own plugins here or in other files in this directory!
 --  I promise not to create any merge conflicts in this directory :)
 --
@@ -55,8 +56,11 @@ return {
   },
   {
     'catppuccin/nvim',
-    as = 'catppuccin',
+    name = 'catppuccin',
     config = function()
+      require('catppuccin').setup({
+        transparent_background = true,
+      })
       vim.cmd.colorscheme('catppuccin-frappe')
     end
   },
