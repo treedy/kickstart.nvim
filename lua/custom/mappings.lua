@@ -22,6 +22,18 @@ vim.keymap.set("n", "<C-h><C-h>",
   end,
   { desc = '[h]arpoon toggle' }
 )
+vim.keymap.set("n", "<C-h><C-n>",
+  function()
+    harpoon:list():next()
+  end,
+  { desc = 'Harpoon [n]ext' }
+)
+vim.keymap.set("n", "<C-h><C-p>",
+  function()
+    harpoon:list():prev()
+  end,
+  { desc = 'Harpoon [p]revious' }
+)
 
 -- Debugger mappings
 local dap, dapui = require('dap'), require('dapui')

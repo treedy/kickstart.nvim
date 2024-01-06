@@ -7,9 +7,7 @@ return {
     'ThePrimeagen/harpoon',
     branch = 'harpoon2',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    config = function()
-      require('harpoon').setup()
-    end
+    -- setup() done in mappings.lua
   },
   {
     'github/copilot.vim',
