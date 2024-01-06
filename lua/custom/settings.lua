@@ -1,10 +1,11 @@
 vim.o.cmdheight = 2
 vim.o.colorcolumn = '80,100,120'
 vim.o.confirm = true
-vim.o.listchars = 'tab:▸ ,eol:¬'
+vim.o.listchars = 'tab:» ,eol:¶,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
 vim.o.modeline = true
 vim.o.relativenumber = true
 vim.o.ruler = true
+vim.o.wildmode = 'longest:full,full'
 vim.o.visualbell = true
 
 -- Cursor colors
@@ -37,7 +38,6 @@ require('modes').setup({
   set_number = true,
 
   -- Disable modes highlights in specified filetypes
-  -- Please PR commonly ignored filetypes
   ignore_filetypes = { 'NvimTree', 'TelescopePrompt' }
 })
 
@@ -45,6 +45,7 @@ require('modes').setup({
 vim.g.copilot_no_tab_map = true
 
 -- Comment config
+---@diagnostic disable-next-line: missing-fields
 require('Comment').setup({
   -- keymappings
   toggler = {
