@@ -8,10 +8,6 @@ return {
     opts = {
       workspaces = {
         {
-          name = 'playground',
-          path = '/mnt/nasshare/obsidian/playground',
-        },
-        {
           name = 'personal',
           path = '/mnt/nasshare/obsidian/personal',
         },
