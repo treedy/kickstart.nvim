@@ -2,7 +2,7 @@
 vim.keymap.set('i', 'jk', '<Escape>')
 
 -- Normal mode personal short cuts
-vim.keymap.set('n', ',s', vim.cmd.update, { desc = '[S]ave file' })
+vim.keymap.set('n', ',s', vim.cmd.write, { desc = '[S]ave file' })
 vim.keymap.set('n', ',l', function() vim.o.list = not vim.o.list end,
   { desc = 'Toggle [L]ist' })
 
