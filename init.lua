@@ -109,6 +109,9 @@ require('lazy').setup({
 
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
+
+      -- Manages formatting of completion pop-up
+      'onsails/lspkind.nvim',
     },
   },
 
@@ -579,6 +582,8 @@ require('neodev').setup()
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+capabilities.textDocument.foldingRange = { dynamicRegistration = false, lineFoldingOnly = true }
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -602,8 +607,16 @@ mason_lspconfig.setup_handlers {
 -- See `:help cmp`
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local lspkind = require 'lspkind'
+lspkind.init({ preset = 'codicons' })
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
+
+local icons = {
+  luasnip = '',
+  nvim_lsp = '',
+  path = '',
+}
 
 cmp.setup {
   snippet = {
@@ -613,6 +626,36 @@ cmp.setup {
   },
   completion = {
     completeopt = 'menu,menuone,noinsert',
+  },
+  window = {
+    completion = cmp.config.window.bordered({
+      border = 'rounded',
+      highlight = 'FloatBorder',
+    }),
+    documentation = cmp.config.window.bordered({
+      border = 'rounded',
+      highlight = 'FloatBorder',
+    }),
+  },
+  formatting = {
+    expandable_indicator = false,
+    format = lspkind.cmp_format({
+      with_text = true, -- do not show text alongside icons
+      maxwidth = 40,
+      mode = 'symbol',
+      before = function(entry, vim_item)
+        local sname = entry.source.name
+        local icon = icons[sname] and icons[sname] or sname
+        vim_item.menu = icon
+        -- Below not really needed with 'menu' being the source
+        local m = vim_item.menu and vim_item.menu or ""
+        if #m > 20 then
+          vim_item.menu = string.sub(m, 1, 20) .. "..."
+        end
+        return vim_item
+      end,
+    }),
+    fields = { 'kind', 'abbr', 'menu' }, -- 'menu' shows source
   },
   mapping = cmp.mapping.preset.insert {
     ['<C-n>'] = cmp.mapping.select_next_item(),
