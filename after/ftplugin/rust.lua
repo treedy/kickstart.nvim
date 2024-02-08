@@ -1,21 +1,15 @@
-package.path = package.path .. ";../../?.lua"
-local custom_util = require('custom.util')
-vim.g.rustaceanvim = {
-  server = {
-    on_attach = custom_util.LSP_ON_ATTACH,
-    settings = {
-      ["rust-analyzer"] = {
-        check = {
-          enable = true,
-          command = "clippy",
-          features = "all",
-        },
-      },
-    },
-    tools = {
-      code_actions = {
-        ui_select_fallback = true,
-      },
-    },
-  },
-}
+local function nmap(key, rust_lsp_cmd, desc)
+  vim.keymap.set('n', key, function()
+      vim.cmd.RustLsp(rust_lsp_cmd)
+    end,
+    { buffer = 0, desc = desc })
+end
+
+-- nmap(',RK', {'hover', 'actions'}, '[H]over (Rust)') -- same as hover
+nmap(',rJ', 'joinLines', '[J]oin (Rust)')
+nmap(',re', 'renderDiagnostic', 'Render [e]rrors (Rust)')
+nmap(',rc', 'openCargo', 'Open [C]argo (Rust)')
+
+require('which-key').register({  -- documentation basically
+  [',r'] = { name = '[R]ust', _, buffer = 0 },
+})
