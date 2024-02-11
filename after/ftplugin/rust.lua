@@ -9,6 +9,10 @@ end
 nmap(',rJ', 'joinLines', '[J]oin (Rust)')
 nmap(',re', 'renderDiagnostic', 'Render [e]rrors (Rust)')
 nmap(',rc', 'openCargo', 'Open [C]argo (Rust)')
+nmap(',rr', {'runnables', bang=true}, '[R]un last config(Rust)')
+nmap(',rR', {'runnables', bang=false}, '[R]un config(Rust)')
+nmap(',rd', {'debuggables', bang=true}, '[D]ebug last config(Rust)')
+nmap(',rD', {'debuggables', bang=false}, '[D]ebug config(Rust)')
 
 require('which-key').register({  -- documentation basically
   [',r'] = { name = '[R]ust', _, buffer = 0 },
