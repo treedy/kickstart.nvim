@@ -17,8 +17,8 @@ vim.g.copilot_no_tab_map = true
 
 vim.api.nvim_create_user_command("DiagnosticToggleUnderline", function()
 	local config = vim.diagnostic.config
-	local vt = config().virtual_text
+	local ul = config().underline
 	config {
-		underline = not vt,
+		underline = not ul,
 	}
 end, { desc = "Toggle diagnostic underline" })
