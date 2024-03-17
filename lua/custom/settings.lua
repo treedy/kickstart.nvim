@@ -12,9 +12,6 @@ vim.o.splitright = true
 vim.o.visualbell = true
 vim.o.wildmode = 'longest:full,full'
 
--- Copilot config
-vim.g.copilot_no_tab_map = true
-
 vim.api.nvim_create_user_command("DiagnosticToggleUnderline", function()
 	local config = vim.diagnostic.config
 	local ul = config().underline
