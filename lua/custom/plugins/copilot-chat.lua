@@ -23,23 +23,23 @@ return {
     event = "VeryLazy",
     keys = {
       {
-        "<leader>ccp",
+        "<leader>pa",
         function()
           require("CopilotChat.code_actions").show_prompt_actions()
         end,
         desc = "CopilotChat - Help actions",
       },
-      { "<leader>ccb", "<cmd>CopilotChatBuffer ",  desc = "CopilotChat - Chat with current buffer" },
-      { "<leader>cce", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>cct", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
+      { "<leader>pb", ":CopilotChatBuffer ",  desc = "CopilotChat - Chat with current buffer" },
+      { "<leader>pe", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
+      { "<leader>pt", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
       {
-        "<leader>ccv",
-        ":CopilotChatVisual",
+        "<leader>pv",
+        ":CopilotChatVisual ",
         mode = "x",
         desc = "CopilotChat - Open in vertical split",
       },
       {
-        "<leader>ccx",
+        "<leader>px",
         ":CopilotChatInPlace<cr>",
         mode = "x",
         desc = "CopilotChat - Run in-place code",
