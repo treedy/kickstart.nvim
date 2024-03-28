@@ -107,6 +107,7 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
 
+      'hrsh7th/cmp-cmdline',
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
 
@@ -635,6 +636,24 @@ cmp.setup {
     { name = 'path' },
   },
 }
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline({
+    -- <C-n/p> will handle history. Use <Tab> for completion.
+    ['<C-n>'] = {
+      c = false,
+    },
+    ['<C-p>'] = {
+      c = false,
+    },
+  }),
+  sources = {
+    { name = 'cmdline' },
+    { name = 'path' },
+  },
+  formatting = {
+    fields = { 'kind', 'abbr' },
+  },
+})
 
 require('custom')
 -- The line beneath this is called `modeline`. See `:help modeline`
