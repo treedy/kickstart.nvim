@@ -2,6 +2,7 @@ vim.o.cmdheight = 2
 vim.o.colorcolumn = '80,100,120'
 vim.o.confirm = true
 vim.o.cursorline = true
+vim.o.fillchars = 'vert:󱖢'
 vim.o.listchars = 'tab:» ,eol:¶,nbsp:␣,trail:•,extends:⟩,precedes:⟨'
 vim.o.modeline = true
 vim.o.relativenumber = true
