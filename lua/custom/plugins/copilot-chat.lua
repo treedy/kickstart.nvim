@@ -1,48 +1,55 @@
 return {
   {
     "CopilotC-Nvim/CopilotChat.nvim",
+    version = "v2.4.2",
     dependencies = {
       { "nvim-telescope/telescope.nvim" }, -- Use telescope for help actions
       { "nvim-lua/plenary.nvim" },
     },
     opts = {
       show_help = "yes", -- Show help text for CopilotChatInPlace, default: yes
-      debug = false, -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
-      disable_extra_info = 'no', -- Disable extra information (e.g: system prompt) in the response.
-      -- proxy = "socks5://127.0.0.1:3000", -- Proxies requests via https or socks.
+      debug = false,     -- Enable or disable debug mode, the log file will be in ~/.local/state/nvim/CopilotChat.nvim.log
       prompts = {
-        Explain = "Explain how it works.",
-        Review = "Review the following code and provide concise suggestions.",
-        Tests = "Briefly explain how the selected code works, then generate unit tests.",
-        Refactor = "Refactor the code to improve clarity and readability.",
+        Review = "/COPILOT_EXPLAIN Review the code and provide concise suggestions.",
+        Refactor = "/COPILOT_REFACTOR Refactor the code to improve clarity and readability.",
       },
     },
-    build = function()
-      vim.notify("Please update the remote plugins by running ':UpdateRemotePlugins', then restart Neovim.")
-    end,
     event = "VeryLazy",
     keys = {
       {
         "<leader>pa",
         function()
-          require("CopilotChat.code_actions").show_prompt_actions()
+          local actions = require("CopilotChat.actions")
+          require("CopilotChat.integrations.telescope").pick(actions.help_actions())
         end,
         desc = "CopilotChat - Help actions",
       },
-      { "<leader>pb", ":CopilotChatBuffer ",  desc = "CopilotChat - Chat with current buffer" },
-      { "<leader>pe", "<cmd>CopilotChatExplain<cr>", desc = "CopilotChat - Explain code" },
-      { "<leader>pt", "<cmd>CopilotChatTests<cr>", desc = "CopilotChat - Generate tests" },
       {
-        "<leader>pv",
-        ":CopilotChatVisual ",
-        mode = "x",
-        desc = "CopilotChat - Open in vertical split",
+        "<leader>pe",
+        "<cmd>CopilotChatExplain<cr>",
+        mode = { "n", "v" },
+        desc = "CopilotChat - Explain code"
       },
       {
-        "<leader>px",
-        ":CopilotChatInPlace<cr>",
-        mode = "x",
-        desc = "CopilotChat - Run in-place code",
+        "<leader>pT",
+        "<cmd>CopilotChatTests<cr>",
+        mode = { "n", "v" },
+        desc = "CopilotChat - Generate tests"
+      },
+      {
+        "<leader>pt",
+        "<cmd>CopilotChatToggle<cr>",
+        desc = "CopilotChat - Toggle",
+      },
+      {
+        "<leader>pM",
+        "<cmd>CopilotChatCommit<cr>",
+        desc = "CopilotChat - Generate commit message for all changes",
+      },
+      {
+        "<leader>pm",
+        "<cmd>CopilotChatCommitStaged<cr>",
+        desc = "CopilotChat - Generate commit message for staged changes",
       },
     },
   },
