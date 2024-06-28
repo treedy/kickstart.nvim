@@ -20,3 +20,23 @@ vim.api.nvim_create_user_command("DiagnosticToggleUnderline", function()
 		underline = not ul,
 	}
 end, { desc = "Toggle diagnostic underline" })
+-- require 'lspconfig'.terraformls.setup {}
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    -- More themes can be found at https://github.com/nvim-lualine/lualine.nvim/blob/master/THEMES.md 
+    -- theme = 'auto', -- Use colors from colorscheme; I find it hard to see window separation
+    theme = 'dracula',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+  },
+}
+
+vim.cmd.colorscheme('catppuccin-frappe')
